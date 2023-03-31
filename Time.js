@@ -8,6 +8,7 @@ export class Time {
         this.#setSeconds();
         this.#setMinute();
         this.#setHour();
+        this.update();
     }
     #setSeconds(){
         this.#seconds = this.#currentTime.getSeconds();
@@ -28,5 +29,12 @@ export class Time {
     
     get hour(){
        return this.#hour
+    }
+    update(){
+        this.#currentTime = new Date()
+        this.#hour = this.#currentTime.getHours();
+        this.#minutes = this.#currentTime.getMinutes();
+        this.#seconds = this.#currentTime.getSeconds();
+        setTimeout(()=> this.update(),1000);
     }
 }
